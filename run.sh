@@ -3,15 +3,15 @@
 echo "Сборка Docker образа..."
 docker build -t discord-bypass .
 
-echo "Запуск контейнера..."
+echo "Запуск контейнера (порт 11080)..."
 docker run -d \
   --name discord-bypass \
   --cap-add=NET_ADMIN \
   --cap-add=NET_RAW \
   --sysctl net.ipv4.ip_forward=1 \
-  -p 1080:1080 \
-  -p 53:53/udp \
+  -p 11080:1080 \
   discord-bypass
 
-echo "Контейнер запущен в фоне"
-echo "Логи: docker logs discord-bypass -f"
+echo "✅ Контейнер запущен!"
+echo "📌 Настройте на Mac:"
+echo "   SOCKS5 прокси: 127.0.0.1:11080"
