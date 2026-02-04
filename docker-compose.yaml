@@ -1,15 +1,12 @@
 version: '3.8'
-
 services:
-  dpi-bypass:
+  discord-bypass:
     build: .
     container_name: discord-bypass
-    restart: unless-stopped
+    stdin_open: true   # Разрешаем интерактивный ввод
+    tty: true          # Эмулируем TTY
     cap_add:
       - NET_ADMIN
       - NET_RAW
-    sysctls:
-      - net.ipv4.ip_forward=1
     ports:
-      - "11080:1080"  # Только SOCKS прокси
-    # Убрал порт 53 полностью
+      - "11080:1080"
