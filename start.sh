@@ -2,6 +2,8 @@
 
 cd /root/zapret-discord-youtube-linux
 
+echo "=== Запуск на порту ${PROXY_PORT:-11080} ==="
+
 echo "=== Установка и настройка zapret ==="
 
 # Запускаем авто-подбор стратегий
