@@ -1,0 +1,19 @@
+version: '3.8'
+
+services:
+  dpi-bypass:
+    build: .
+    container_name: discord-bypass
+    restart: unless-stopped
+    cap_add:
+      - NET_ADMIN
+      - NET_RAW
+    sysctls:
+      - net.ipv4.ip_forward=1
+    ports:
+      - "1080:1080"
+      - "53:53/udp"
+    volumes:
+      - ./config:/root/config
+      - ./logs:/root/logs
+    # Убрал network_mode: host для работы с портами
