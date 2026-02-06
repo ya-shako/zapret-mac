@@ -1,0 +1,4 @@
+curl
+sudo
+nftables
+git
