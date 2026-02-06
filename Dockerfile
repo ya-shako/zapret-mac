@@ -1,17 +1,15 @@
-FROM ubuntu:22.04
+FROM ubuntu:latest 
 
-ENV DEBIAN_FRONTEND=noninteractive
 
-RUN apt-get update && apt-get install -y \
-    iproute2 curl wget git python3 \
-    dante-server \
-    && rm -rf /var/lib/apt/lists/*
+COPY requiriments.txt .
+RUN apt-get update && \
+    xargs apt-get install -y < requiriments.txt
 
-# Устанавливаем простой SOCKS5 сервер
-RUN wget https://raw.githubusercontent.com/Sergeydigl3/zapret-discord-youtube-linux/main/tpws -O /usr/local/bin/tpws && \
-    chmod +x /usr/local/bin/tpws
+ENTRYPOINT git clone https://github.com/Sergeydigl3/zapret-discord-youtube-linux.git && \
+    cd zapret-discord-youtube-linux && \
+    sudo bash main_script.sh
 
-COPY start-socks.sh /root/start-socks.sh
-RUN chmod +x /root/start-socks.sh
 
-CMD ["/root/start-socks.sh"]
+
+
+
